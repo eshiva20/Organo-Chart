@@ -106,48 +106,46 @@
           const data = [
             {
               id: "1",
-              type: "Management",
               name: "William",
-              title: "CEO",
+              position: "CEO",
               location: "UK, London",
+              department: "Finance",
               img: "https://cdn.balkan.app/shared/1.jpg",
-              team: "mahesh,rahul",
-              DOB: "04/12/2000",
             },
             {
               id: "2",
               pid: "1",
-              type: "Design",
               name: "Jolly",
-              title: "Designer",
+              position: "CEO",
               location: "UK, London",
+              department: "Design",
               img: "https://cdn.balkan.app/shared/2.jpg",
             },
             {
               id: "3",
               pid: "1",
-              type: "Human Resource",
               name: "Lisa",
-              title: "HR Manager",
+              position: "CEO",
               location: "UK, London",
+              department: "Human Resources",
               img: "https://cdn.balkan.app/shared/3.jpg",
             },
             {
               id: "4",
               pid: "1",
-              type: "Procurement",
               name: "Edward",
-              title: "Procurement Manager",
+              position: "CEO",
               location: "UK, London",
+              department: "Sales",
               img: "https://cdn.balkan.app/shared/4.jpg",
             },
             {
               id: "5",
               pid: "2",
-              type: "IT",
               name: "Amin",
-              title: "IT Manager",
+              position: "CEO",
               location: "UK, London",
+              department: "Procrument",
               img: "https://cdn.balkan.app/shared/5.jpg",
             },
           ];
@@ -157,21 +155,28 @@
           const sidebarData = [
             {
               id: "6",
-              type: "Management",
               name: "Shiva",
-              title: "CEO",
-              location: "UK, London",
-              img: "https://cdn.balkan.app/shared/1.jpg",
+              position: "Software Developer",
+              location: "Mumbai, Maharastra",
+              department: "IT",
+              img: "https://cdn.balkan.app/shared/9.jpg",
             },
             {
               id: "7",
-              type: "Management",
-              name: "Prasanna",
-              title: "CEO",
-              location: "UK, London",
-              img: "https://cdn.balkan.app/shared/4.jpg",
+              name: "Rishi",
+              position: "Backend Developer",
+              location: "Chandigarh, Punjab",
+              department: "IT",
+              img: "https://cdn.balkan.app/shared/11.jpg",
             },
-            // More sidebar nodes...
+            {
+              id: "8",
+              name: "Prasanna",
+              position: "Mobile App Developer",
+              location: "Pune, Maharastra",
+              department: "IT",
+              img: "https://cdn.balkan.app/shared/12.jpg",
+            },
           ];
 
           generateSidebarCards(sidebarData);
@@ -196,7 +201,8 @@
             <img src="${node.img}" alt="${node.name}">
             <div class="info">
               <div class="name">${node.name}</div>
-              <div class="title">${node.title}</div>
+              <div class="position">${node.position}</div>
+              <div class="department">${node.department}</div>
               <div class="location">${node.location}</div>
             </div>
           `;
@@ -210,7 +216,8 @@
         const cardData = {
           id: e.target.dataset.id,
           name: e.target.querySelector(".name").innerText,
-          title: e.target.querySelector(".title").innerText,
+          position: e.target.querySelector(".position").innerText,
+          department: e.target.querySelector(".department").innerText,
           location: e.target.querySelector(".location").innerText,
           img: e.target.querySelector("img").src,
         };
@@ -242,7 +249,8 @@
           id: `${draggedCardData.id}`, // Use the dragged card's ID
           pid: targetNodeId, // Make it a child of the target node
           name: draggedCardData.name, // Use the dragged card's data
-          title: draggedCardData.title,
+          position: draggedCardData.position,
+          department: draggedCardData.department,
           location: draggedCardData.location,
           img: draggedCardData.img,
         };
@@ -259,7 +267,7 @@
       }
 
       async function updateChart(node) {
-        console.log("node", node);
+        console.log("updated node:", node);
         try {
           const response = await fetch(
             "https://api.example.com/updateOrgChartNode",
@@ -304,8 +312,9 @@
         enableDragDrop: true,
         nodeBinding: {
           field_0: "name",
-          field_1: "title",
+          field_1: "position",
           field_2: "location",
+          field_3: "department",
           img_0: "img",
         },
         nodes: [],
