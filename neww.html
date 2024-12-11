@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +22,6 @@
         height: 100%;
         padding: 0;
         margin: 0;
-        overflow: hidden;
         font-family: "Lato", serif;
         background: #353c48;
       }
@@ -45,20 +48,38 @@
       }
       .sidebar {
         width: 30%;
-        padding: 10px;
+        padding: 0px 12px;
         color: #fff;
         background: #252b34;
         overflow-y: auto;
       }
+      .cardlists {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+        padding-right: 5px;
+      }
+      .cardlists::-webkit-scrollbar {
+        width: 5px;
+        background-color: #d9d9d9;
+        border-radius: 50px;
+      }
+      .cardlists::-webkit-scrollbar-thumb {
+        background-color: #8a8a8a;
+        border-radius: 50px;
+        cursor: pointer;
+      }
       .card {
         background-color: #1a2024;
-        margin: 10px;
         padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
         cursor: pointer;
+        border: 1px solid #ffffff2e;
       }
       .card img {
         width: 50px;
@@ -96,7 +117,6 @@
         margin-left: auto;
         margin-right: 10px;
       }
-
       .hbl-logo {
         width: auto;
         height: 50px;
@@ -150,6 +170,54 @@
         width: 12px;
         height: auto;
       }
+      .select-department {
+        display: grid;
+        gap: 8px;
+        padding: 15px 0px;
+        border-bottom: 1px solid #424242;
+      }
+      .select-department label {
+        font-family: "Rubik", serif;
+        font-size: 16px;
+      }
+      .select-department select {
+        padding: 9px 7px;
+        border: 1px solid #c2c2c2;
+        border-radius: 10px;
+        background-color: transparent;
+        outline: none;
+        color: #9c9c9c;
+        font-size: 16px;
+      }
+      .select-department select option {
+        background-color: #252b34;
+        color: #fff;
+      }
+      .search-div {
+        border: 1px solid #c2c2c2;
+        padding: 9px 7px;
+        border-radius: 10px;
+        margin-top: 15px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+      .search-icon {
+        width: 18px;
+        margin-bottom: 1px;
+      }
+      .search-input {
+        width: 100%;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: #9c9c9c;
+        font-family: "Nunito", serif;
+        font-size: 14px;
+      }
+      #sidebar-card-department {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -191,7 +259,31 @@
         <div class="organo-chart">
           <div id="tree"></div>
         </div>
-        <div class="sidebar" id="sidebar">This is Sidebar</div>
+        <div class="sidebar" id="sidebar">
+          <div class="select-department">
+            <label for="department">Department</label>
+            <select id="department">
+              <option value="all" hidden>All</option>
+              <option value="Finance">Finance</option>
+              <option value="Design">Design</option>
+              <option value="Human Resouce">Human Resouce</option>
+              <option value="Sales">Sales</option>
+              <option value="Procrument">Procrument</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+          <div>
+            <div class="search-div">
+              <img
+                src="./assets/search_icon.png"
+                class="search-icon"
+                alt="Search Icon"
+              />
+              <input class="search-input" placeholder="Search By Name" />
+            </div>
+            <div class="cardlists" id="cardlists"></div>
+          </div>
+        </div>
       </div>
     </section>
     <script src="https://balkan.app/js/OrgChart.js"></script>
@@ -302,8 +394,8 @@
 
       // Generate cards in the sidebar
       function generateSidebarCards(data) {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.innerHTML = ""; // Clear existing content
+        const cardlists = document.getElementById("cardlists");
+        cardlists.innerHTML = "";
 
         data.forEach((node) => {
           const card = document.createElement("div");
@@ -316,13 +408,13 @@
             <div class="info">
               <div class="name">${node.name}</div>
               <div class="position">${node.position}</div>
-              <div class="department">${node.department}</div>
+              <div id="sidebar-card-department" class="department">${node.department}</div>
               <div class="location">${node.location}</div>
             </div>
           `;
 
           card.addEventListener("dragstart", handleDragStart);
-          sidebar.appendChild(card);
+          cardlists.appendChild(card);
         });
       }
 
@@ -427,6 +519,18 @@
         template: "base",
         mouseScrool: OrgChart.action.none,
         enableDragDrop: true,
+        editForm: {
+          readOnly: true,
+          buttons: {
+            share: null,
+            pdf: null,
+            remove: {
+              icon: OrgChart.icon.remove(24, 24, "#fff"),
+              text: "Remove",
+              hideIfDetailsMode: false,
+            },
+          },
+        },
         nodeBinding: {
           field_0: "name",
           field_1: "position",
@@ -442,6 +546,31 @@
 
       chart.on("update", function (sender, oldNode, newNode) {
         updateChart(newNode);
+      });
+
+      chart.on("remove", function (sender, nodeId) {
+        const removedNode = chart.get(nodeId); // Get details of the removed node if needed
+        console.log("removedNode", removedNode);
+
+        const updatedData = { ...removedNode, pid: null };
+        console.log("updatedData", updatedData);
+
+        // const parentId = removedNode.pid;
+        // if (parentId) {
+        //   const parentNode = chart.get(parentId);
+        //   console.log("Parent Node:", parentNode);
+
+        //   const updateData = {
+        //     id: parentNode.id,
+        //     childRemoved: nodeId,
+        //   };
+
+        //   updateChart(updateData);
+        // } else {
+        //   console.log("Removed node had no parent.");
+        // }
+
+        // console.log(`Node with ID ${nodeId} removed.`);
       });
 
       OrgChart.templates.base.plus = "";
