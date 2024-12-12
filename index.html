@@ -42,8 +42,31 @@
         width: calc(100% - 40px);
         background: #353c48 !important;
       }
+      .create-file {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0px;
+        background-color: transparent;
+        border: none;
+      }
+      .orgchart-title {
+        font-weight: 700;
+        font-size: 22px;
+        font-family: "Rubik", serif;
+        background: #000;
+        color: #fff;
+        padding: 10px 0px;
+        width: 350px;
+        text-align: center;
+        margin: 10px auto 0px auto;
+      }
       #tree {
-        height: calc(100vh - 92px) !important;
+        height: calc(100vh - 110px) !important;
+        /* height: calc(100vh - 170px) !important; */
         background-color: transparent;
       }
       .sidebar {
@@ -322,6 +345,13 @@
       </header>
       <div class="content">
         <div class="organo-chart">
+          <div>
+            <button class="create-file">
+              File Name
+              <i class="fa-solid fa-angle-down"></i>
+            </button>
+            <!-- <p class="orgchart-title">ORG CHART</p> -->
+          </div>
           <div id="tree"></div>
         </div>
         <div class="sidebar" id="sidebar">
@@ -644,8 +674,8 @@
       }
 
       OrgChart.templates.base = Object.assign({}, OrgChart.templates.base, {
-        size: [250, 110],
-        node: `<rect x="0" y="0" height="110" width="250" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="7" ry="7" ></rect>`,
+        size: [240, 110],
+        node: `<rect x="0" y="0" height="110" width="240" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="2" ry="2" ></rect>`,
         field_0: `<text style="font-size: 18px; font-weight:500" fill="#ffffff" x="90" y="30" text-anchor="left">{val}</text>`,
         field_1: `<text style="font-size: 14px;" fill="#CDCDCD" x="90" y="50" text-anchor="left">{val}</text>`,
         field_2: `<text style="font-size: 14px;" fill="#CDCDCD" x="90" y="70" text-anchor="left">{val}</text>`,
