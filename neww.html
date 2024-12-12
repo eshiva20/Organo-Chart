@@ -57,7 +57,6 @@
         margin-top: 10px;
         display: flex;
         flex-direction: column;
-        gap: 6px;
         height: calc(100vh - 240px);
         overflow-y: auto;
         padding-right: 5px;
@@ -86,6 +85,7 @@
         height: 50px;
         border-radius: 50%;
         margin-right: 15px;
+        -webkit-user-drag: none;
       }
       .card .info {
         color: #cdcdcd;
@@ -169,6 +169,7 @@
       .select-icon {
         width: 12px;
         height: auto;
+        cursor: pointer;
       }
       .select-department {
         display: grid;
@@ -187,6 +188,7 @@
         background-color: transparent;
         outline: none;
         color: #9c9c9c;
+        cursor: pointer;
         font-size: 16px;
       }
       .select-department select option {
@@ -217,6 +219,24 @@
       }
       #sidebar-card-department {
         display: none;
+      }
+      .department-name {
+        background-color: #b1cbff;
+        color: #082152;
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .department-icon {
+        width: 10px;
+      }
+      .cards-div {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
       }
     </style>
   </head>
@@ -306,7 +326,7 @@
 
       async function fetchChartData() {
         try {
-          const data = [
+          const hirarchyData = [
             {
               id: "1",
               name: "William",
@@ -354,36 +374,53 @@
           ];
 
           // chart.load(data);
-          const updatedData = assignDepartmentColors(data);
-          chart.load(updatedData);
+          const updatedHirarchyData = assignDepartmentColors(hirarchyData);
+          chart.load(updatedHirarchyData);
 
           const sidebarData = [
             {
-              id: "6",
-              name: "Shiva",
-              position: "Software Developer",
-              location: "Mumbai, Maharastra",
-              department: "IT",
-              img: "https://cdn.balkan.app/shared/9.jpg",
+              department: "Finance",
+              departmentData: [
+                {
+                  id: "6",
+                  name: "Shiva",
+                  position: "Software Developer",
+                  location: "Mumbai, Maharastra",
+                  department: "Finance",
+                  img: "https://cdn.balkan.app/shared/9.jpg",
+                },
+                {
+                  id: "7",
+                  name: "Rishi",
+                  position: "Backend Developer",
+                  location: "Chandigarh, Punjab",
+                  department: "Finance",
+                  img: "https://cdn.balkan.app/shared/11.jpg",
+                },
+              ],
             },
             {
-              id: "7",
-              name: "Rishi",
-              position: "Backend Developer",
-              location: "Chandigarh, Punjab",
-              department: "IT",
-              img: "https://cdn.balkan.app/shared/11.jpg",
-            },
-            {
-              id: "8",
-              name: "Prasanna",
-              position: "Mobile App Developer",
-              location: "Pune, Maharastra",
-              department: "IT",
-              img: "https://cdn.balkan.app/shared/12.jpg",
+              department: "Procrument",
+              departmentData: [
+                {
+                  id: "8",
+                  name: "Akash",
+                  position: "UI Designer",
+                  location: "Chandigarh, Punjab",
+                  department: "Procrument",
+                  img: "https://cdn.balkan.app/shared/8.jpg",
+                },
+                {
+                  id: "9",
+                  name: "Prasanna",
+                  position: "Mobile App Developer",
+                  location: "Pune, Maharastra",
+                  department: "Procrument",
+                  img: "https://cdn.balkan.app/shared/10.jpg",
+                },
+              ],
             },
           ];
-
           generateSidebarCards(sidebarData);
           console.log("updatedData", updatedData);
           return updatedData;
@@ -395,15 +432,22 @@
       // Generate cards in the sidebar
       function generateSidebarCards(data) {
         const cardlists = document.getElementById("cardlists");
-        cardlists.innerHTML = "";
 
         data.forEach((node) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.draggable = true;
-          card.dataset.id = node.id;
+          const departmentDiv = document.createElement("div");
+          departmentDiv.classList.add("department-container");
+          departmentDiv.innerHTML = `<p class="department-name">
+           <img src="./assets/department_icon.png" class="department-icon" alt="Department Icon"/> Department-${node.department}</p>`;
+          const cardsDiv = document.createElement("div");
+          cardsDiv.classList.add("cards-div");
 
-          card.innerHTML = `
+          node.departmentData.forEach((node) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.draggable = true;
+            card.dataset.id = node.id;
+
+            card.innerHTML = `
             <img src="${node.img}" alt="${node.name}">
             <div class="info">
               <div class="name">${node.name}</div>
@@ -413,8 +457,12 @@
             </div>
           `;
 
-          card.addEventListener("dragstart", handleDragStart);
-          cardlists.appendChild(card);
+            card.addEventListener("dragstart", handleDragStart);
+            cardsDiv.appendChild(card);
+          });
+
+          departmentDiv.appendChild(cardsDiv);
+          cardlists.appendChild(departmentDiv);
         });
       }
 
@@ -434,8 +482,8 @@
       function handleDrop(e) {
         e.preventDefault();
 
-        const draggedCardData = JSON.parse(e.dataTransfer.getData("cardData")); // Get dragged card data
-        const targetNode = e.target.closest("g.node"); // Find the closest 'g.node' element
+        const draggedCardData = JSON.parse(e.dataTransfer.getData("cardData"));
+        const targetNode = e.target.closest("g.node");
 
         if (!targetNode) {
           console.error("Invalid drop target. No node found.");
