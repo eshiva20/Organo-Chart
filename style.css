@@ -24,16 +24,19 @@ body {
   width: calc(100% - 40px);
   background: #353c48 !important;
 }
+.create-file-btn {
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+}
 .create-file {
   color: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
   font-size: 16px;
   margin: 0px;
-  background-color: transparent;
-  border: none;
+  text-decoration: none;
 }
 .orgchart-title {
   font-weight: 700;
