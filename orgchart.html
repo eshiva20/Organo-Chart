@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Drag Drop Chart</title>
+  </head>
+  <body>
+    <section class="main">
+      <header class="header">
+        <img
+          src="./assets/hbl_logo.png"
+          class="hbl-logo"
+          alt="Health Biotech Limited"
+        />
+        <div class="header-right">
+          <div class="icons-div">
+            <img src="./assets/add_icon.png" class="icon" alt="Add Icon" />
+            <img
+              src="./assets/bell_icon.png"
+              class="icon"
+              alt="Notification Icon"
+            />
+          </div>
+          <div class="profile">
+            <img
+              src="./assets/profile_image.jpg"
+              class="profile-image"
+              alt="Profile Image"
+            />
+            <div>
+              <p class="profile-name">Amrit Arora</p>
+              <p class="profile-position">Director</p>
+            </div>
+            <img
+              src="./assets/select_icon.png"
+              class="select-icon"
+              alt="Select Icon"
+            />
+          </div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="organo-chart">
+          <div>
+            <button class="create-file-btn">
+              <a class="create-file" href="create.html">
+                File Name
+                <i class="fa-solid fa-angle-down"></i>
+              </a>
+            </button>
+            <!-- <p class="orgchart-title">ORG CHART</p> -->
+          </div>
+          <div id="tree"></div>
+        </div>
+        <div class="sidebar" id="sidebar">
+          <div class="select-div">
+            <label for="department">Department</label>
+            <select id="department">
+              <option value="all" hidden>All</option>
+              <option value="Finance">Finance</option>
+              <option value="Design">Design</option>
+              <option value="Human Resouce">Human Resouce</option>
+              <option value="Sales">Sales</option>
+              <option value="Procrument">Procrument</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+          <div>
+            <div class="search-div">
+              <img
+                src="./assets/search_icon.png"
+                class="search-icon"
+                alt="Search Icon"
+              />
+              <input class="search-input" placeholder="Search By Name" />
+            </div>
+            <div class="cardlists" id="cardlists"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://balkan.app/js/OrgChart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

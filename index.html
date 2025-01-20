@@ -14,10 +14,10 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <title>Drag Drop Chart</title>
+    <title>Home</title>
   </head>
   <body>
-    <section class="main">
+    <main class="home">
       <header class="header">
         <img
           src="./assets/hbl_logo.png"
@@ -51,47 +51,204 @@
           </div>
         </div>
       </header>
-      <div class="content">
-        <div class="organo-chart">
-          <div>
-            <button class="create-file-btn">
-              <a class="create-file" href="create.html">
-                File Name
-                <i class="fa-solid fa-angle-down"></i>
-              </a>
+      <section>
+        <div class="create-container">
+          <a class="link-btn" href="new-file.html">
+            <button class="create-new-file">
+              <i class="fa-solid fa-plus btn-icon"></i>
+              <div class="btn-text">
+                <p>New File</p>
+                <p>Design your desired &apos;ORG Chart&apos;</p>
+              </div>
             </button>
-            <!-- <p class="orgchart-title">ORG CHART</p> -->
-          </div>
-          <div id="tree"></div>
-        </div>
-        <div class="sidebar" id="sidebar">
-          <div class="select-department">
-            <label for="department">Department</label>
-            <select id="department">
-              <option value="all" hidden>All</option>
-              <option value="Finance">Finance</option>
-              <option value="Design">Design</option>
-              <option value="Human Resouce">Human Resouce</option>
-              <option value="Sales">Sales</option>
-              <option value="Procrument">Procrument</option>
-              <option value="IT">IT</option>
-            </select>
-          </div>
-          <div>
-            <div class="search-div">
-              <img
-                src="./assets/search_icon.png"
-                class="search-icon"
-                alt="Search Icon"
-              />
-              <input class="search-input" placeholder="Search By Name" />
+          </a>
+          <button class="create-new-file">
+            <i class="fa-solid fa-user-plus btn-icon"></i>
+            <div class="btn-text">
+              <p>Add Person</p>
+              <p>Add person to the department</p>
             </div>
-            <div class="cardlists" id="cardlists"></div>
-          </div>
+          </button>
+          <button class="create-new-file">
+            <i class="fa-solid fa-clipboard-list btn-icon"></i>
+            <div class="btn-text">
+              <p>Add KRA & KPI</p>
+              <p>Add KRA & KPI in department</p>
+            </div>
+          </button>
         </div>
-      </div>
-    </section>
-    <script src="https://balkan.app/js/OrgChart.js"></script>
-    <script src="script.js"></script>
+        <section class="home-filter-tab">
+          <div class="filter-container">
+            <ul class="filter-items">
+              <li>
+                <button>Recently Viewed</button>
+              </li>
+              <li>
+                <button>Saved Charts</button>
+              </li>
+              <li>
+                <button>Bin</button>
+              </li>
+            </ul>
+            <div class="topbar-filters">
+              <div class="search-div">
+                <img
+                  src="./assets/search_icon.png"
+                  class="search-icon"
+                  alt="Search Icon"
+                />
+                <input class="search-input" placeholder="Search By Name" />
+              </div>
+              <div class="select-div">
+                <label for="department">Company filter</label>
+                <select id="department">
+                  <option value="all" hidden>All</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Design">Design</option>
+                  <option value="Human Resouce">Human Resouce</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Procrument">Procrument</option>
+                  <option value="IT">IT</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="all-charts">
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+            <div class="single-orgchart-cover">
+              <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+              <img
+                class="orgchart-cover-img"
+                src="./assets/orgchart_cover.png"
+                alt="OrgChart_cover"
+              />
+              <div class="orgchart-info">
+                <h2 class="orgchart-cover-title">Finance Chart</h2>
+                <p class="orgchart-last-edit">Edited 1 min ago</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
   </body>
 </html>
