@@ -23,6 +23,7 @@ async function fetchChartData() {
         position: "CEO",
         location: "UK, London",
         department: "Finance",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/1.jpg",
       },
       {
@@ -32,6 +33,7 @@ async function fetchChartData() {
         position: "CEO",
         location: "UK, London",
         department: "Design",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/2.jpg",
       },
       {
@@ -41,6 +43,7 @@ async function fetchChartData() {
         position: "CEO",
         location: "UK, London",
         department: "Human Resources",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/3.jpg",
       },
       {
@@ -50,6 +53,7 @@ async function fetchChartData() {
         position: "CEO",
         location: "UK, London",
         department: "Sales",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/4.jpg",
       },
       {
@@ -59,6 +63,7 @@ async function fetchChartData() {
         position: "CEO",
         location: "UK, London",
         department: "Procrument",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/5.jpg",
       },
       {
@@ -68,6 +73,7 @@ async function fetchChartData() {
         position: "Sales",
         location: "Chembur,Mumbai",
         department: "Sales",
+        rating: "4.6",
         img: "https://cdn.balkan.app/shared/15.jpg",
       },
     ];
@@ -293,17 +299,43 @@ async function updateChart(node) {
   }
 }
 
+function handleFile(event) {
+  event.stopPropagation();
+  alert("File clicked!");
+}
+function handleKraKpi(event) {
+  event.stopPropagation();
+  alert("KRA KPI clicked!");
+}
+function handleStats(event) {
+  event.stopPropagation();
+  alert("Stats clicked!");
+}
+
 OrgChart.templates.base = Object.assign({}, OrgChart.templates.base, {
-  size: [240, 90],
-  node: `<rect x="0" y="0" height="90" width="240" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="2" ry="2" ></rect>`,
-  field_0: `<text style="font-size: 16px; font-weight:500" fill="#ffffff" x="85" y="22" text-anchor="left">{val}</text>`,
-  field_1: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="40" text-anchor="left">{val}</text>`,
-  field_2: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="57" text-anchor="left">{val}</text>`,
-  custom_field_3: `<rect x="85" y="62" height="22" width="140" fill="{val}" rx="4" ry="4"></rect>`,
-  field_3: `<text style="font-size: 14px;" fill="#ffffff" x="90" y="78" text-anchor="left">{val}</text>`,
-  img_0: `<clipPath id="ulaImg"><circle cx="45" cy="50" r="30"></circle></clipPath>
-    <image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="{val}" x="15" y="20" width="60" height="60"></image>`,
+  size: [240, 115],
+  node: `<rect x="0" y="0" height="115" width="240" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="2" ry="2" ></rect>`,
+  field_0: `<text style="font-size: 16px; font-weight:500" fill="#ffffff" x="85" y="28" text-anchor="left">{val}</text>`,
+  field_1: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="46" text-anchor="left">{val}</text>`,
+  field_4: `<g>
+  <text style="font-size: 10px;" fill="#CDCDCD" x="120" y="46" text-anchor="left">{val}</text>
+  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" 
+    fill="#FFD700" transform="translate(135, 38) scale(0.4)"></path>
+</g>`,
+  field_2: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="65" text-anchor="left">{val}</text>`,
+  custom_field_3: `<rect x="10" y="85" height="22" width="220" fill="{val}" rx="4" ry="4"></rect>`,
+  field_3: `<text style="font-size: 14px;" fill="#ffffff" x="35" y="101" text-anchor="left">{val}</text>`,
+  chart_icon: `<g><image xlink:href="./assets/department_icon.png" x="18" y="90" width="12" height="12"></image></g>`,
+  img_0: `<clipPath id="ulaImg"><circle cx="45" cy="45" r="28"></circle></clipPath>
+    <image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="{val}" x="15" y="15" width="60" height="60"></image>`,
+  img_1: `<g style="cursor: pointer;" onclick="handleFile(event)">
+  <image xlink:href="./assets/file.png" x="160" y="8" width="20" height="20"></image></g>`,
+  img_2: `<g style="cursor: pointer;" onclick="handleKraKpi(event)">
+  <image xlink:href="./assets/kra_kpi_cover.png" x="185" y="8" width="20" height="20"></image></g>`,
+  img_3: `<g style="cursor: pointer;" onclick="handleStats(event)">
+  <image xlink:href="./assets/stats.png" x="210" y="8" width="20" height="20"></image></g>`,
 });
+
 OrgChart.templates.base.ripple = {
   radius: 100,
   color: "#ffffff",
@@ -333,8 +365,13 @@ var chart = new OrgChart(document.getElementById("tree"), {
     field_1: "position",
     field_2: "location",
     field_3: "department",
+    field_4: "rating",
     custom_field_3: "departmentColor",
     img_0: "img",
+    img_1: "img",
+    img_2: "img",
+    img_3: "img",
+    chart_icon: "img",
   },
   nodes: [],
 });
