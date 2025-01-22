@@ -52,19 +52,44 @@
         </div>
       </header>
       <div class="content">
+        <div class="actions">
+          <i class="fa-solid fa-house action-icon"></i>
+          <i class="fa-solid fa-floppy-disk action-icon"></i>
+          <i class="fa-solid fa-file-import action-icon"></i>
+          <i class="fa-solid fa-share-nodes action-icon mt-auto"></i>
+          <i class="fa-solid fa-file-arrow-up action-icon"></i>
+        </div>
         <div class="organo-chart">
-          <div>
-            <button class="create-file-btn">
-              <a class="create-file" href="create.html">
-                File Name
-                <i class="fa-solid fa-angle-down"></i>
-              </a>
-            </button>
-            <!-- <p class="orgchart-title">ORG CHART</p> -->
+          <div class="create-file-container">
+            <select>
+              <option value="Finance">Finance ORG</option>
+              <option value="Design">Design ORG</option>
+              <option value="Human Resouce">Human Resouce ORG</option>
+              <option value="Sales">Sales ORG</option>
+              <option value="Procrument">Procrument ORG</option>
+              <option value="IT">IT ORG</option>
+            </select>
+
+            <p class="orgchart-title">ORG CHART</p>
           </div>
           <div id="tree"></div>
         </div>
         <div class="sidebar" id="sidebar">
+          <div class="kra-kpi">
+            <img
+              class="kra-kpi-icon"
+              src="./assets/kra_kpi.png"
+              alt="KRA_KPI_Icon"
+            />
+            <div class="kra-kpi-text">
+              <p>KRA & KPI</p>
+              <p>See and move KRA&KPI from dprt.</p>
+            </div>
+          </div>
+          <div class="company-name-details">
+            <label for="">Company name</label>
+            <p>Healthbiotech ltd.</p>
+          </div>
           <div class="select-div">
             <label for="department">Department</label>
             <select id="department">
@@ -77,7 +102,8 @@
               <option value="IT">IT</option>
             </select>
           </div>
-          <div>
+          <hr />
+          <div class="all-employees-container">
             <div class="search-div">
               <img
                 src="./assets/search_icon.png"

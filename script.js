@@ -294,15 +294,15 @@ async function updateChart(node) {
 }
 
 OrgChart.templates.base = Object.assign({}, OrgChart.templates.base, {
-  size: [240, 110],
-  node: `<rect x="0" y="0" height="110" width="240" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="2" ry="2" ></rect>`,
-  field_0: `<text style="font-size: 18px; font-weight:500" fill="#ffffff" x="90" y="30" text-anchor="left">{val}</text>`,
-  field_1: `<text style="font-size: 14px;" fill="#CDCDCD" x="90" y="50" text-anchor="left">{val}</text>`,
-  field_2: `<text style="font-size: 14px;" fill="#CDCDCD" x="90" y="70" text-anchor="left">{val}</text>`,
-  custom_field_3: `<rect x="85" y="77" height="22" width="140" fill="{val}" rx="4" ry="4"></rect>`,
-  field_3: `<text style="font-size: 14px;" fill="#ffffff" x="90" y="93" text-anchor="left">{val}</text>`,
-  img_0: `<clipPath id="ulaImg"><circle cx="45" cy="55" r="35"></circle></clipPath>
-    <image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="{val}" x="10" y="20" width="70" height="70"></image>`,
+  size: [240, 90],
+  node: `<rect x="0" y="0" height="90" width="240" fill="#1A2024" stroke-width="1" stroke="#FFFFFF30" rx="2" ry="2" ></rect>`,
+  field_0: `<text style="font-size: 16px; font-weight:500" fill="#ffffff" x="85" y="22" text-anchor="left">{val}</text>`,
+  field_1: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="40" text-anchor="left">{val}</text>`,
+  field_2: `<text style="font-size: 12px;" fill="#CDCDCD" x="85" y="57" text-anchor="left">{val}</text>`,
+  custom_field_3: `<rect x="85" y="62" height="22" width="140" fill="{val}" rx="4" ry="4"></rect>`,
+  field_3: `<text style="font-size: 14px;" fill="#ffffff" x="90" y="78" text-anchor="left">{val}</text>`,
+  img_0: `<clipPath id="ulaImg"><circle cx="45" cy="50" r="30"></circle></clipPath>
+    <image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="{val}" x="15" y="20" width="60" height="60"></image>`,
 });
 OrgChart.templates.base.ripple = {
   radius: 100,

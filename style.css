@@ -13,7 +13,7 @@ p {
 }
 
 .header {
-  height: 70px;
+  height: 60px;
   padding: 0px 20px;
   background: #fcfbfc;
   border-bottom: 0.5px solid #d2d1d2;
@@ -22,54 +22,137 @@ p {
 }
 .content {
   display: flex;
+  /* height: calc(100vh - 61px); */
+
+  .actions {
+    background: #414955;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 0px;
+    .action-icon {
+      color: #dfdfdf;
+      background: #343d4d;
+      border: 0.8px solid #b1b9c7;
+      border-radius: 8px;
+      padding: 7px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0px 0px 244px 0px #00000033;
+      }
+    }
+    .mt-auto {
+      margin-top: auto;
+    }
+  }
 }
 .organo-chart {
   padding: 10px;
   width: calc(100% - 40px);
   background: #353c48 !important;
 }
-.create-file-btn {
-  background-color: transparent;
-  border: none;
-  text-decoration: none;
+.create-file-container {
+  text-align: center;
+
+  select {
+    background-color: #414955;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    width: 200px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+  }
 }
-.create-file {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  margin: 0px;
-  text-decoration: none;
-}
+
 .orgchart-title {
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   font-family: "Rubik", serif;
-  background: #000;
+  background: #151515;
   color: #fff;
-  padding: 10px 0px;
-  width: 350px;
+  padding: 7px 0px;
+  width: 320px;
   text-align: center;
   margin: 10px auto 0px auto;
 }
 #tree {
-  height: calc(100vh - 112px) !important;
-  /* height: calc(100vh - 170px) !important; */
+  /* height: calc(100vh - 102px) !important; */
+  height: calc(100vh - 165px) !important;
+  margin-top: 5px;
   background-color: transparent;
 }
 .sidebar {
-  width: 30%;
-  padding: 0px 12px;
+  width: 32%;
+  /* padding: 0px 12px; */
   color: #fff;
   background: #252b34;
   overflow-y: auto;
+}
+.kra-kpi {
+  cursor: pointer;
+  background: #343d4d;
+  border: 1px solid #a3abb9;
+  box-shadow: 0px 0px 244px 0px #00000033;
+  border-radius: 10px;
+  padding: 9px 7px;
+  margin: 15px 12px 0px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .kra-kpi-icon {
+    background: #656f83;
+    padding: 8px;
+    border-radius: 8px;
+    width: 20px;
+    height: 20px;
+  }
+  .kra-kpi-text {
+    font-weight: 500;
+    p:nth-child(1) {
+      font-size: 16px;
+      margin-bottom: 1px;
+    }
+    p:nth-child(2) {
+      font-size: 12px;
+    }
+  }
+}
+.company-name-details {
+  margin: 15px 12px 0px 12px;
+  label {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+.sidebar {
+  .select-div,
+  .all-employees-container {
+    margin: 0px 12px;
+  }
+  hr {
+    border: 1px solid #424242;
+  }
 }
 .cardlists {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 240px);
+  height: calc(100vh - 345px);
   overflow-y: auto;
   padding-right: 5px;
 }
@@ -146,11 +229,11 @@ p {
   gap: 15px;
   border-right: 1px solid #d2d1d2;
   padding-right: 20px;
-  height: 50px;
+  height: 40px;
 }
 .icon {
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   border: 1px solid #d2d1d2;
   border-radius: 5px;
   padding: 5px;
@@ -163,10 +246,10 @@ p {
   margin-left: 20px;
   border: 0.5px solid #d2d1d2;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 5px 10px;
 }
 .profile-image {
-  width: 40px;
+  width: 35px;
   height: auto;
   border-radius: 50%;
 }
@@ -177,12 +260,12 @@ p {
 }
 .profile-name {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
 }
 .profile-position {
   color: #7a7a7a;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 15px;
 }
 .position,
@@ -198,8 +281,7 @@ p {
 .select-div {
   display: grid;
   gap: 8px;
-  padding: 15px 0px;
-  /* border-bottom: 1px solid #424242; */
+  padding: 10px 0px;
 }
 .select-div label {
   font-family: "Rubik", serif;
@@ -223,7 +305,7 @@ p {
   border: 1px solid #c2c2c2;
   padding: 9px 7px;
   border-radius: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -406,6 +488,7 @@ p {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 15px;
+
       .single-orgchart-cover {
         position: relative;
         box-shadow: 0px 0px 244px 0px #00000040;
@@ -415,6 +498,7 @@ p {
           top: 10px;
           right: 10px;
           cursor: pointer;
+          color: #fff;
         }
         .orgchart-cover-img {
           width: 100%;
