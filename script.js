@@ -490,6 +490,11 @@ editForm.prototype.show = function (nodeId) {
   div.classList.add("employee-details");
   this.chart.element.appendChild(div);
 
+  const crossIcon = div.querySelector(".modal-actions-icon.cross-icon");
+  crossIcon.addEventListener("click", () => {
+    this.hide();
+  });
+
   OrgChart.animate(
     div,
     { opacity: 0, right: -100 },
