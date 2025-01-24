@@ -74,45 +74,82 @@
           </div>
           <div id="tree"></div>
         </div>
-        <div class="sidebar" id="sidebar">
-          <div class="kra-kpi">
-            <img
-              class="kra-kpi-icon"
-              src="./assets/kra_kpi.png"
-              alt="KRA_KPI_Icon"
-            />
-            <div class="kra-kpi-text">
-              <p>KRA & KPI</p>
-              <p>See and move KRA&KPI from dprt.</p>
-            </div>
-          </div>
-          <div class="company-name-details">
-            <label for="">Company name</label>
-            <p>Healthbiotech ltd.</p>
-          </div>
-          <div class="select-div">
-            <label for="department">Department</label>
-            <select id="department">
-              <option value="all" hidden>All</option>
-              <option value="Finance">Finance</option>
-              <option value="Design">Design</option>
-              <option value="Human Resouce">Human Resouce</option>
-              <option value="Sales">Sales</option>
-              <option value="Procrument">Procrument</option>
-              <option value="IT">IT</option>
-            </select>
-          </div>
-          <hr />
-          <div class="all-employees-container">
-            <div class="search-div">
+        <div class="sidebar-container">
+          <div class="sidebar" id="sidebar">
+            <div class="kra-kpi">
               <img
-                src="./assets/search_icon.png"
-                class="search-icon"
-                alt="Search Icon"
+                class="kra-kpi-icon"
+                src="./assets/kra_kpi.png"
+                alt="KRA_KPI_Icon"
               />
-              <input class="search-input" placeholder="Search By Name" />
+              <div class="kra-kpi-text">
+                <p>KRA & KPI</p>
+                <p>See and move KRA&KPI from dprt.</p>
+              </div>
             </div>
-            <div class="cardlists" id="cardlists"></div>
+            <div class="company-name-details">
+              <label for="">Company name</label>
+              <p>Healthbiotech ltd.</p>
+            </div>
+            <div class="select-div">
+              <label for="department">Department</label>
+              <select id="department">
+                <option value="all" hidden>All</option>
+                <option value="Finance">Finance</option>
+                <option value="Design">Design</option>
+                <option value="Human Resouce">Human Resouce</option>
+                <option value="Sales">Sales</option>
+                <option value="Procrument">Procrument</option>
+                <option value="IT">IT</option>
+              </select>
+            </div>
+            <hr />
+            <div>
+              <div class="all-employees-container">
+                <div class="search-div">
+                  <img
+                    src="./assets/search_icon.png"
+                    class="search-icon"
+                    alt="Search Icon"
+                  />
+                  <input class="search-input" placeholder="Search By Name" />
+                </div>
+                <div class="cardlists" id="cardlists"></div>
+              </div>
+            </div>
+          </div>
+          <div class="kraKpi-modal">
+            <div class="kraKpi-header">
+              <h2>KRA & KPI</h2>
+              <i class="fa-solid fa-circle-xmark kraKpi-close-btn"></i>
+            </div>
+            <div class="select-div">
+              <label for="department">Department</label>
+              <select id="department">
+                <option value="all" hidden>All</option>
+                <option value="Finance">Finance</option>
+                <option value="Design">Design</option>
+                <option value="Human Resouce">Human Resouce</option>
+                <option value="Sales">Sales</option>
+                <option value="Procrument">Procrument</option>
+                <option value="IT">IT</option>
+              </select>
+            </div>
+            <div class="kraKpi-btns">
+              <button class="kraKpi-btn kra-btn">KRA</button>
+              <button class="kraKpi-btn kpi-btn">KPI</button>
+            </div>
+            <div class="kraKpi-actions">
+              <button>
+                <img src="./assets/dots.png" />
+                <span>Move one by one</span>
+              </button>
+              <button>
+                <input type="checkbox" />
+                <span>Move one by one</span>
+              </button>
+            </div>
+            <div class="kraKpi-items"></div>
           </div>
         </div>
       </div>

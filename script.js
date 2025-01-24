@@ -701,3 +701,32 @@ treeContainer.addEventListener("drop", handleDrop);
 treeContainer.addEventListener("dragover", handleDragOver);
 
 fetchChartData();
+
+const kraKpiDiv = document.querySelector(".kra-kpi");
+const SideBarEmployees = document.querySelector(".sidebar");
+
+kraKpiDiv.addEventListener("click", () => {
+  const modal = document.querySelector(".kraKpi-modal");
+  SideBarEmployees.style.display = "none";
+  modal.style.display = "block";
+
+  const KraKpiCloseBtn = document.querySelector(".kraKpi-close-btn");
+
+  if (KraKpiCloseBtn) {
+    KraKpiCloseBtn.addEventListener("click", () => {
+      const modal = document.querySelector(".kraKpi-modal");
+      SideBarEmployees.style.display = "block";
+      modal.style.display = "none";
+    });
+  }
+});
+
+const modalKraKpiItems = document.querySelector(".kraKpi-modal .kraKpi-items");
+
+[...Array(10)].forEach((item) => {
+  let kraKpiItem = document.createElement("div");
+  kraKpiItem.classList.add("kraKpiItem");
+  kraKpiItem.innerHTML = `<img src="./assets/dots.png" class="dot-icon"/>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>`;
+  modalKraKpiItems.appendChild(kraKpiItem);
+});
