@@ -307,9 +307,42 @@ function handleKraKpi(event) {
   event.stopPropagation();
   alert("KRA KPI clicked!");
 }
-function handleStats(event) {
+// function handleStats(event) {
+//   event.stopPropagation();
+//   alert("Stats clicked!");
+// }
+
+function handleStats(event, target) {
   event.stopPropagation();
-  alert("Stats clicked!");
+
+  const nodeElement = target.closest("g.node");
+  const nodeId = nodeElement.getAttribute("data-n-id");
+  console.log("nodeId", nodeId);
+
+  // Create the modal HTML
+  const modalHtml = `
+      <div class="stats-header">
+        <h2>Statistics</h2> 
+        <i class="fa-solid fa-circle-xmark close-icon"></i>
+      </div>`;
+
+  // Create the modal element
+  const modal = document.createElement("div");
+  modal.classList.add("stats-modal");
+  modal.innerHTML = modalHtml;
+  document.body.appendChild(modal);
+
+  window.addEventListener("click", function (event) {
+    if (event.target !== modal && !modal.contains(event.target)) {
+      modal.remove();
+    }
+  });
+
+  // Add event listener to close the modal
+  const closeBtn = modal.querySelector(".close-icon");
+  closeBtn.addEventListener("click", () => {
+    modal.remove();
+  });
 }
 
 OrgChart.templates.base = Object.assign({}, OrgChart.templates.base, {
@@ -332,7 +365,7 @@ OrgChart.templates.base = Object.assign({}, OrgChart.templates.base, {
   <image xlink:href="./assets/file.png" x="160" y="8" width="20" height="20"></image></g>`,
   img_2: `<g style="cursor: pointer;" onclick="handleKraKpi(event)">
   <image xlink:href="./assets/kra_kpi_cover.png" x="185" y="8" width="20" height="20"></image></g>`,
-  img_3: `<g style="cursor: pointer;" onclick="handleStats(event)">
+  img_3: `<g style="cursor: pointer;" onclick="handleStats(event,this)">
   <image xlink:href="./assets/stats.png" x="210" y="8" width="20" height="20"></image></g>`,
 });
 
