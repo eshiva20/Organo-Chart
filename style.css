@@ -860,17 +860,17 @@ p {
   left: 30%;
   background: #1a2024;
   position: absolute;
-  padding: 5px;
+  padding: 10px 15px;
   border-radius: 5px;
   border: 1px solid #ffffff30;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .stats-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 5px;
+    padding-bottom: 10px;
 
     h2 {
       color: #969fad;
@@ -883,4 +883,67 @@ p {
       cursor: pointer;
     }
   }
+  .stats-chart {
+    .chart_container {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin: 0 auto;
+
+      .chart_center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff;
+
+        .chart_title {
+          font-weight: 300;
+          font-size: 18px;
+        }
+        .chart_count {
+          font-size: 28px;
+          font-weight: 800;
+          line-height: 30px;
+        }
+      }
+    }
+    .chart_labels {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0px;
+
+      .label {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 400;
+        color: #fff;
+      }
+      .label span:nth-child(1) {
+        margin-bottom: 5px;
+      }
+      .label span:nth-child(2) {
+        border-radius: 50px;
+        margin: auto;
+        color: #feffff;
+        padding: 2px 10px;
+      }
+      .label.pending span:nth-child(2) {
+        background: #ee0000;
+      }
+      .label.completed span:nth-child(2) {
+        background: #0000ff;
+      }
+      .label.overdue span:nth-child(2) {
+        background: #ff9900;
+      }
+    }
+  }
 }
+
+/*  */

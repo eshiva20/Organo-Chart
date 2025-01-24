@@ -324,7 +324,22 @@ function handleStats(event, target) {
       <div class="stats-header">
         <h2>Statistics</h2> 
         <i class="fa-solid fa-circle-xmark close-icon"></i>
-      </div>`;
+      </div>
+      <div class="stats-chart">
+        <div class="chart_container">
+          <canvas id="priorityChart"></canvas>
+          <div class="chart_center">
+            <p class="chart_title">Open task</p>
+            <p class="chart_count">60</p>
+          </div>
+        </div>
+        <div class="chart_labels">
+          <div class="label pending"><span>High</span> <span>20</span></div>
+          <div class="label completed"><span>Med</span> <span>20</span></div>
+          <div class="label overdue"><span>Low</span> <span>20</span></div>
+        </div>
+      </div>
+      `;
 
   // Create the modal element
   const modal = document.createElement("div");
@@ -342,6 +357,60 @@ function handleStats(event, target) {
   const closeBtn = modal.querySelector(".close-icon");
   closeBtn.addEventListener("click", () => {
     modal.remove();
+  });
+
+  const ptx = document.getElementById("priorityChart").getContext("2d");
+  const priorityChart = new Chart(ptx, {
+    type: "doughnut",
+    data: {
+      labels: ["High", "Medium", "low"],
+      datasets: [
+        {
+          label: "Tasks",
+          data: [20, 20, 20],
+          backgroundColor: [
+            "#EE0000", // high - red
+            "#0000FF", // medium - blue
+            "#FF9900", // low - yellow
+          ],
+          borderColor: "#2F2F2F",
+          borderWidth: 5,
+          borderRadius: 10,
+        },
+      ],
+    },
+    options: {
+      cutout: "80%",
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (tooltipItem) {
+              const dataset =
+                tooltipItem.chart.data.datasets[tooltipItem.datasetIndex];
+              const total = dataset.data.reduce((sum, value) => sum + value, 0);
+              const currentValue = dataset.data[tooltipItem.dataIndex];
+              const percentage = ((currentValue / total) * 100).toFixed(2);
+              return ` ${tooltipItem.label}: ${percentage}%`;
+            },
+          },
+        },
+        legend: {
+          display: false,
+        },
+      },
+      onHover: function (event) {
+        const points = this.getElementsAtEventForMode(
+          event,
+          "nearest",
+          { intersect: true },
+          true
+        );
+        event.native.target.style.cursor = points.length
+          ? "pointer"
+          : "default";
+      },
+    },
   });
 }
 
