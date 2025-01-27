@@ -1097,3 +1097,54 @@ p {
     }
   }
 }
+
+.krakpi-selected {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  width: 250px;
+  border-radius: 5px;
+  .krakpi-selected-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .count {
+      font-size: 12px;
+      h3 {
+        margin: 0px;
+        font-weight: 700;
+        font-size: 22px;
+      }
+    }
+    button {
+      background: #0251c7;
+      color: #fff;
+      font-size: 14px;
+      padding: 5px 25px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+    }
+  }
+  .move-selection {
+    font-weight: 700;
+    font-size: 18px;
+    padding-top: 20px;
+    display: grid;
+    gap: 8px;
+    .move-btn {
+      background: #0251c7;
+      padding: 10px;
+      margin-top: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      color: #fff;
+      outline: none;
+      border: none;
+    }
+  }
+}

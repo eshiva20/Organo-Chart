@@ -7,6 +7,9 @@ const departmentColors = {
   IT: "#7fdbff80",
 };
 
+const krakpiSelectedContainer = document.querySelector(".krakpi-selected");
+krakpiSelectedContainer.style.display = "none";
+
 function assignDepartmentColors(nodes) {
   return nodes.map((node) => ({
     ...node,
@@ -462,8 +465,8 @@ function handleKraSelect(checkbox) {
       selectedKras.splice(index, 1);
     }
   }
-
-  console.log(`${selectedKras.length} KRAs selected`);
+  checkSelected();
+  // console.log(`${selectedKras.length} KRAs selected`);
 }
 
 function handleKpiSelect(checkbox) {
@@ -479,8 +482,9 @@ function handleKpiSelect(checkbox) {
       selectedKpis.splice(index, 1);
     }
   }
+  checkSelected();
 
-  console.log(`${selectedKpis.length} KPIs selected`);
+  // console.log(`${selectedKpis.length} KPIs selected`);
 }
 
 function selectAllKras() {
@@ -514,6 +518,14 @@ function selectAllKraKpi() {
 
   selectAllKras();
   selectAllKpis();
+}
+
+function checkSelected() {
+  if (selectedKpis.length > 0 || selectedKras.length > 0) {
+    krakpiSelectedContainer.style.display = "block";
+  } else {
+    krakpiSelectedContainer.style.display = "none";
+  }
 }
 
 editForm.prototype.show = function (nodeId) {
@@ -671,6 +683,7 @@ editForm.prototype.show = function (nodeId) {
   const crossIcon = div.querySelector(".modal-actions-icon.cross-icon");
   crossIcon.addEventListener("click", () => {
     this.hide();
+    krakpiSelectedContainer.style.display = "none";
   });
 
   OrgChart.animate(
@@ -686,6 +699,7 @@ editForm.prototype.hide = function (showldUpdateTheNode) {
   let form = this.chart.element.querySelector("#edit-form");
   if (form) {
     form.parentNode.removeChild(form);
+    krakpiSelectedContainer.style.display = "none";
   }
 };
 
