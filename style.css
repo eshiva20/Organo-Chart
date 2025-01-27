@@ -795,7 +795,7 @@ p {
       }
       .kraKpi-actions {
         display: flex;
-        justify-content: space-between;
+        gap: 10px;
         border-bottom: 1px solid #969696;
         padding-bottom: 7px;
         button {
@@ -809,6 +809,7 @@ p {
           border-radius: 5px;
           padding: 2px 5px;
           color: #fff;
+          width: 100%;
 
           img {
             width: 5px;

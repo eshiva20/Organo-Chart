@@ -544,7 +544,7 @@ editForm.prototype.show = function (nodeId) {
               </button>
               <button>
                 <input type="checkbox"/>
-                <span>Move one by one</span>
+                <span>Select alll</span>
               </button>
             </div>
             <div class="kra-items">
@@ -568,7 +568,7 @@ editForm.prototype.show = function (nodeId) {
               </button>
               <button>
                 <input type="checkbox"/>
-                <span>Move one by one</span>
+                <span>Select alll</span>
               </button>
             </div>
             <div class="kpi-items">
