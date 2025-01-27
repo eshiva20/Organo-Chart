@@ -444,6 +444,78 @@ editForm.prototype.init = function (obj) {
   this.chart = obj;
 };
 
+let selectedKras = [];
+let selectedKpis = [];
+
+// ... (rest of the code) ...
+
+function handleKraSelect(checkbox) {
+  const kraId = checkbox.closest(".kra-item").getAttribute("key");
+
+  if (checkbox.checked) {
+    if (!selectedKras.includes(kraId)) {
+      selectedKras.push(kraId);
+    }
+  } else {
+    const index = selectedKras.indexOf(kraId);
+    if (index > -1) {
+      selectedKras.splice(index, 1);
+    }
+  }
+
+  console.log(`${selectedKras.length} KRAs selected`);
+}
+
+function handleKpiSelect(checkbox) {
+  const kpiId = checkbox.closest(".kpi-item").getAttribute("key");
+
+  if (checkbox.checked) {
+    if (!selectedKpis.includes(kpiId)) {
+      selectedKpis.push(kpiId);
+    }
+  } else {
+    const index = selectedKpis.indexOf(kpiId);
+    if (index > -1) {
+      selectedKpis.splice(index, 1);
+    }
+  }
+
+  console.log(`${selectedKpis.length} KPIs selected`);
+}
+
+function selectAllKras() {
+  const allKraCheckboxes = document.querySelectorAll(".kra-checkbox");
+  const selectAllKraCheckbox = document.querySelector("#selectAll-Kras");
+
+  selectAllKraCheckbox.checked = !selectAllKraCheckbox.checked;
+
+  allKraCheckboxes.forEach((checkbox) => {
+    checkbox.checked = !checkbox.checked;
+    handleKraSelect(checkbox);
+  });
+}
+
+function selectAllKpis() {
+  const allKpiCheckboxes = document.querySelectorAll(".kpi-checkbox");
+  const selectAllKpiCheckbox = document.querySelector("#selectAll-Kpis");
+
+  selectAllKpiCheckbox.checked = !selectAllKpiCheckbox.checked;
+
+  allKpiCheckboxes.forEach((checkbox) => {
+    checkbox.checked = !checkbox.checked;
+    handleKpiSelect(checkbox);
+  });
+}
+
+function selectAllKraKpi() {
+  const selectAllKraKpiCheckbox = document.querySelector("#selectAll-kraKpi");
+
+  selectAllKraKpiCheckbox.checked = !selectAllKraKpiCheckbox.checked;
+
+  selectAllKras();
+  selectAllKpis();
+}
+
 editForm.prototype.show = function (nodeId) {
   this.hide();
   let node = this.chart.get(nodeId);
@@ -534,6 +606,10 @@ editForm.prototype.show = function (nodeId) {
         </div>
       </div>
       <hr/>
+      <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
+        <input type="checkbox" id="selectAll-kraKpi"/>
+        <span>Select all KRA & KPI</span>
+      </button>
       <section class="kra-kpi-container">
         <div class="kraKpi-card kra-card">
             <h2>KRA</h2>
@@ -542,16 +618,16 @@ editForm.prototype.show = function (nodeId) {
                 <img src="./assets/dots.png"/>
                 <span>Move one by one</span>
               </button>
-              <button>
-                <input type="checkbox"/>
-                <span>Select alll</span>
+              <button  onclick="selectAllKras()">
+                <input type="checkbox" id="selectAll-Kras"/>
+                <span>Select all</span>
               </button>
             </div>
             <div class="kra-items">
              ${[...Array(5)]
                .map((_, id) => {
                  return `<div key=${id} class="kra-item">
-                <img src="./assets/dots.png" class="dot-icon"/>
+                 <input type="checkbox" class="kra-checkbox"  onchange="handleKraSelect(this)"/>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
               </div>`;
                })
@@ -566,16 +642,16 @@ editForm.prototype.show = function (nodeId) {
                 <img src="./assets/dots.png"/>
                 <span>Move one by one</span>
               </button>
-              <button>
-                <input type="checkbox"/>
-                <span>Select alll</span>
+              <button onclick="selectAllKpis()">
+                <input type="checkbox" id="selectAll-Kpis"/>
+                <span>Select all</span>
               </button>
             </div>
             <div class="kpi-items">
              ${[...Array(5)]
                .map((_, id) => {
                  return `<div key=${id} class="kpi-item">
-                <input type="checkbox" class="kpi-checkbox"/>
+                <input type="checkbox" class="kpi-checkbox"  onchange="handleKpiSelect(this)"/>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
               </div>`;
                })

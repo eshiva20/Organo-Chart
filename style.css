@@ -617,14 +617,13 @@ p {
 .employee-details {
   position: absolute;
   top: 0px;
-  right: -100px;
   z-index: 99;
   opacity: 0;
   padding: 10px;
   color: #fff;
   background: #1a2024;
   border-radius: 10px;
-  height: 95%;
+  height: 96%;
   width: 500px;
   border: 1px solid #ffffff30;
   overflow-y: auto;
@@ -779,6 +778,20 @@ p {
       }
     }
   }
+  .selectAll-kraKpi {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #474747;
+    border-radius: 3px;
+    padding: 4px 5px;
+    width: 100%;
+    margin-bottom: 7px;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
   .kra-kpi-container {
     display: flex;
     gap: 10px;
@@ -810,6 +823,7 @@ p {
           padding: 2px 5px;
           color: #fff;
           width: 100%;
+          cursor: pointer;
 
           img {
             width: 5px;
