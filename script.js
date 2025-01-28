@@ -202,7 +202,11 @@ function generateSidebarCards(data) {
           <div id="sidebar-card-department" class="department">${innerNode.department}</div>
           <div class="location">${innerNode.location}</div>
         </div>
-        <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+        <div class="sidebarCard-actions">
+          <img class="sidebar-info-icon" src="./assets/file.png"/>
+          <img class="sidebar-info-icon" src="./assets/kra_kpi_cover.png"/>
+          <i class="fa-solid fa-ellipsis-vertical more-icon"></i>
+        </div>
         </div>
         <div class="team-members">
           <img src="./assets/teams_icon.png" class="teams-icon" alt="Teams Icon"/>

@@ -196,6 +196,22 @@ p {
   display: grid;
   gap: 2px;
 }
+.card {
+  .cardUpper {
+    .sidebarCard-actions {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: auto;
+      .sidebar-info-icon {
+        width: 20px;
+      }
+      .more-icon {
+        margin-left: 3px;
+      }
+    }
+  }
+}
 .card .name {
   font-size: 16px;
   font-weight: 500;
@@ -350,10 +366,7 @@ p {
   flex-direction: column;
   gap: 7px;
 }
-.more-icon {
-  margin-bottom: auto;
-  margin-left: auto;
-}
+
 .team-members {
   background: #262d32;
   border-radius: 5px;
