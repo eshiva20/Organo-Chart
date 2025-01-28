@@ -521,8 +521,22 @@ function selectAllKraKpi() {
 }
 
 function checkSelected() {
+  const selectedType = document.querySelector("#selected-type");
+  const selectedCount = document.querySelector("#selected-count");
   if (selectedKpis.length > 0 || selectedKras.length > 0) {
     krakpiSelectedContainer.style.display = "block";
+    if (selectedKpis.length > 0 && selectedKras.length === 0) {
+      selectedType.innerText = "KPI Selected";
+      selectedCount.innerText = selectedKpis.length;
+    } else if (selectedKras.length > 0 && selectedKpis.length === 0) {
+      selectedType.innerText = "KRA Selected";
+      selectedCount.innerText = selectedKras.length;
+    } else {
+      selectedType.innerText = "KRA & KPI Selected";
+      selectedCount.innerText = selectedKpis.length + selectedKras.length;
+    }
+
+    console.log("selectedKpis.length", selectedKpis.length);
   } else {
     krakpiSelectedContainer.style.display = "none";
   }
