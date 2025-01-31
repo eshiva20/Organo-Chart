@@ -33,6 +33,7 @@ p {
     align-items: center;
     padding: 10px 0px;
     .action-icon {
+      position: relative;
       color: #dfdfdf;
       background: #343d4d;
       border: 0.8px solid #b1b9c7;
@@ -45,8 +46,31 @@ p {
       align-items: center;
       cursor: pointer;
 
+      &::after {
+        content: attr(data-tooltip);
+        font-family: "Rubik", serif;
+        font-weight: 400;
+        position: absolute;
+        bottom: 25%;
+        left: 180%;
+        z-index: 9;
+        transform: translateX(-50%);
+        background-color: rgb(36 42 50);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 10px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s, visibility 0.2s;
+      }
+
       &:hover {
         box-shadow: 0px 0px 244px 0px #00000033;
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
     .mt-auto {
