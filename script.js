@@ -644,10 +644,6 @@ editForm.prototype.show = function (nodeId) {
         <div class="kraKpi-card kra-card">
             <h2>KRA</h2>
             <div class="kraKpi-actions">
-              <button>
-                <img src="./assets/dots.png"/>
-                <span>Move one by one</span>
-              </button>
               <button  onclick="selectAllKras()">
                 <input type="checkbox" id="selectAll-Kras"/>
                 <span>Select all</span>
@@ -667,11 +663,7 @@ editForm.prototype.show = function (nodeId) {
         </div>
         <div class="kraKpi-card kpi-card">
             <h2>KPI</h2>
-            <div class="kraKpi-actions">
-              <button>
-                <img src="./assets/dots.png"/>
-                <span>Move one by one</span>
-              </button>
+            <div class="kraKpi-actions">       
               <button onclick="selectAllKpis()">
                 <input type="checkbox" id="selectAll-Kpis"/>
                 <span>Select all</span>
