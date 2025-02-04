@@ -300,16 +300,16 @@ document.addEventListener("DOMContentLoaded", function () {
          </div>
         </div>
         <hr/>
-      <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
-        <input type="checkbox" id="selectAll-kraKpi"/>
-        <span>Select all KRA & KPI</span>
-      </button>
+        <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
+          <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();"  />
+          <span>Select all KRA & KPI</span>
+        </button>
       <section class="kra-kpi-container">
         <div class="kraKpi-card kra-card">
             <h2>KRA</h2>
             <div class="kraKpi-actions">
               <button  onclick="selectAllKras()">
-                <input type="checkbox" id="selectAll-Kras"/>
+                <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
                 <span>Select all</span>
               </button>
             </div>
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <h2>KPI</h2>
             <div class="kraKpi-actions">       
               <button onclick="selectAllKpis()">
-                <input type="checkbox" id="selectAll-Kpis"/>
+                <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()" />
                 <span>Select all</span>
               </button>
             </div>
@@ -712,17 +712,21 @@ function toggleSelectAllKraKpi(checkbox) {
 function checkSelected() {
   const selectedType = document.querySelector("#selected-type");
   const selectedCount = document.querySelector("#selected-count");
+  const moveItem = document.querySelector("#move-item");
   if (selectedKpis.length > 0 || selectedKras.length > 0) {
     krakpiSelectedContainer.style.display = "block";
     if (selectedKpis.length > 0 && selectedKras.length === 0) {
       selectedType.innerText = "KPI Selected";
       selectedCount.innerText = selectedKpis.length;
+      moveItem.innerText = "Move KPI";
     } else if (selectedKras.length > 0 && selectedKpis.length === 0) {
       selectedType.innerText = "KRA Selected";
       selectedCount.innerText = selectedKras.length;
+      moveItem.innerText = "Move KRA";
     } else {
       selectedType.innerText = "KRA & KPI Selected";
       selectedCount.innerText = selectedKpis.length + selectedKras.length;
+      moveItem.innerText = "Move KRA & KPI";
     }
   } else {
     krakpiSelectedContainer.style.display = "none";
