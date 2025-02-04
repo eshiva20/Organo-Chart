@@ -678,7 +678,7 @@ function selectAllKras() {
   selectAllKraCheckbox.checked = !selectAllKraCheckbox.checked;
 
   allKraCheckboxes.forEach((checkbox) => {
-    checkbox.checked = !checkbox.checked;
+    checkbox.checked = selectAllKraCheckbox.checked;
     handleKraSelect(checkbox);
   });
 }
@@ -690,7 +690,7 @@ function selectAllKpis() {
   selectAllKpiCheckbox.checked = !selectAllKpiCheckbox.checked;
 
   allKpiCheckboxes.forEach((checkbox) => {
-    checkbox.checked = !checkbox.checked;
+    checkbox.checked = selectAllKpiCheckbox.checked;
     handleKpiSelect(checkbox);
   });
 }
@@ -719,8 +719,6 @@ function checkSelected() {
       selectedType.innerText = "KRA & KPI Selected";
       selectedCount.innerText = selectedKpis.length + selectedKras.length;
     }
-
-    console.log("selectedKpis.length", selectedKpis.length);
   } else {
     krakpiSelectedContainer.style.display = "none";
   }
@@ -817,15 +815,15 @@ editForm.prototype.show = function (nodeId) {
       </div>
       <hr/>
       <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
-        <input type="checkbox" id="selectAll-kraKpi"/>
+        <input type="checkbox" id="selectAll-kraKpi" onclick="selectAllKraKpi()" />
         <span>Select all KRA & KPI</span>
       </button>
       <section class="kra-kpi-container">
         <div class="kraKpi-card kra-card">
             <h2>KRA</h2>
             <div class="kraKpi-actions">
-              <button  onclick="selectAllKras()">
-                <input type="checkbox" id="selectAll-Kras"/>
+              <button onclick="selectAllKras()">
+                <input type="checkbox" id="selectAll-Kras" onclick="selectAllKras()" />
                 <span>Select all</span>
               </button>
             </div>
@@ -845,7 +843,7 @@ editForm.prototype.show = function (nodeId) {
             <h2>KPI</h2>
             <div class="kraKpi-actions">       
               <button onclick="selectAllKpis()">
-                <input type="checkbox" id="selectAll-Kpis"/>
+                <input type="checkbox" id="selectAll-Kpis" onclick="selectAllKpis()"/>
                 <span>Select all</span>
               </button>
             </div>
