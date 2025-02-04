@@ -704,6 +704,11 @@ function selectAllKraKpi() {
   selectAllKpis();
 }
 
+function toggleSelectAllKraKpi(checkbox) {
+  checkbox.checked = !checkbox.checked;
+  selectAllKraKpi();
+}
+
 function checkSelected() {
   const selectedType = document.querySelector("#selected-type");
   const selectedCount = document.querySelector("#selected-count");
@@ -815,7 +820,7 @@ editForm.prototype.show = function (nodeId) {
       </div>
       <hr/>
       <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
-        <input type="checkbox" id="selectAll-kraKpi" onclick="selectAllKraKpi()" />
+        <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();" />
         <span>Select all KRA & KPI</span>
       </button>
       <section class="kra-kpi-container">
@@ -823,7 +828,7 @@ editForm.prototype.show = function (nodeId) {
             <h2>KRA</h2>
             <div class="kraKpi-actions">
               <button onclick="selectAllKras()">
-                <input type="checkbox" id="selectAll-Kras" onclick="selectAllKras()" />
+                <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
                 <span>Select all</span>
               </button>
             </div>
@@ -843,7 +848,7 @@ editForm.prototype.show = function (nodeId) {
             <h2>KPI</h2>
             <div class="kraKpi-actions">       
               <button onclick="selectAllKpis()">
-                <input type="checkbox" id="selectAll-Kpis" onclick="selectAllKpis()"/>
+                <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()"/>
                 <span>Select all</span>
               </button>
             </div>
