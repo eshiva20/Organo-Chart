@@ -187,6 +187,7 @@ function showSidebarNode() {
 }
 
 function hideSidebarNode() {
+  krakpiSelectedContainer.style.display = "none";
   const sidebarNodeDetail = document.querySelector(".side-node-data");
   sidebarNodeDetail.style.transform = "translate(110%, -50%)"; // Slide out to the right
 }
