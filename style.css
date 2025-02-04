@@ -1008,6 +1008,8 @@ p {
 
 .kraKpi-modal {
   display: none;
+  z-index: 99;
+  position: relative;
   /* position: absolute;
   right: 0;
   top: 10%;
