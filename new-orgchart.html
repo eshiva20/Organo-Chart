@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <title>Drag Drop Chart</title>
+    <title>Create New OrgChart</title>
   </head>
   <body>
     <section class="main">
@@ -72,9 +72,10 @@
           ></i>
           <i
             class="fa-solid fa-file-arrow-up action-icon"
-            data-tooltip="Upload"
+            data-tooltip="Download"
           ></i>
         </div>
+
         <div class="organo-chart">
           <div class="create-file-container">
             <select>
@@ -89,6 +90,7 @@
             <p class="orgchart-title">ORG CHART</p>
           </div>
           <div id="tree"></div>
+          <div class="side-node-data sidebar-employee-details"></div>
         </div>
         <div class="sidebar-container">
           <div class="sidebar" id="sidebar">
@@ -177,7 +179,7 @@
             <button>Next</button>
           </div>
           <div class="move-selection">
-            <p>Move KRA</p>
+            <p id="move-item"></p>
             <div class="select-div">
               <label for="department">Department</label>
               <select id="department">
@@ -193,13 +195,13 @@
             <div class="select-div">
               <label for="department">Employee</label>
               <select id="department">
-                <option value="all" hidden>All</option>
-                <option value="Finance">Finance</option>
-                <option value="Design">Design</option>
-                <option value="Human Resouce">Human Resouce</option>
-                <option value="Sales">Sales</option>
-                <option value="Procrument">Procrument</option>
-                <option value="IT">IT</option>
+                <option value="all" hidden>Select Employee</option>
+                <option value="William">William</option>
+                <option value="Jolly">Jolly</option>
+                <option value="Lisa">Lisa</option>
+                <option value="Edward">Edward</option>
+                <option value="Amin">Amin</option>
+                <option value="Sudarsan">Sudarsan</option>
               </select>
             </div>
             <button class="move-btn">Move</button>

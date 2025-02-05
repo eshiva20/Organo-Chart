@@ -698,7 +698,6 @@ function selectAllKpis() {
 
 function selectAllKraKpi() {
   const selectAllKraKpiCheckbox = document.querySelector("#selectAll-kraKpi");
-
   selectAllKraKpiCheckbox.checked = !selectAllKraKpiCheckbox.checked;
 
   selectAllKras();
