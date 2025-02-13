@@ -654,7 +654,8 @@ p {
   }
 }
 
-.employee-details {
+.employee-details,
+.minview-employee-details {
   position: absolute;
   top: 0px;
   z-index: 99;
@@ -690,14 +691,70 @@ p {
       cursor: pointer;
     }
   }
-  .profile-details {
+  .open-min-view {
+    display: flex;
+    gap: 15px;
+  }
+  .profile-details,
+  .minview-profile-details {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 
-    /* border: 1px solid gray; */
+    .about-profile-details {
+      h2 {
+        color: #969fad;
+        font-weight: 700;
+        font-size: 22px;
+        margin: 0px;
+      }
 
-    .profile-img {
+      .about-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 10px;
+        column-gap: 30px;
+        margin-top: 5px;
+        div {
+          line-height: 22px;
+
+          label {
+            font-weight: 400;
+            font-size: 13px;
+          }
+          p {
+            font-weight: 600;
+            font-size: 17px;
+          }
+
+          .department {
+            color: #082152;
+            background: #b1cbff;
+            border-radius: 5px;
+            padding: 0px 5px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            .department-icon {
+              width: 12px;
+            }
+          }
+        }
+      }
+      .team-members {
+        margin-top: 0px;
+        .teamMembers-lists {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .hide-about-profile-details {
+      display: none;
+    }
+
+    .profile-img,
+    .minview-profile-img {
       width: 35%;
       .img {
         width: 100%;
@@ -765,58 +822,17 @@ p {
         }
       }
     }
+    .minview-profile-img {
+      width: 100%;
+    }
 
     .profile-details {
       width: 60%;
       display: block;
-
-      h2 {
-        color: #969fad;
-        font-weight: 700;
-        font-size: 22px;
-        margin: 0px;
-      }
-
-      .about-details {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        row-gap: 10px;
-        column-gap: 30px;
-        margin-top: 5px;
-        div {
-          line-height: 22px;
-
-          label {
-            font-weight: 400;
-            font-size: 13px;
-          }
-          p {
-            font-weight: 600;
-            font-size: 17px;
-          }
-
-          .department {
-            color: #082152;
-            background: #b1cbff;
-            border-radius: 5px;
-            padding: 0px 5px;
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            .department-icon {
-              width: 12px;
-            }
-          }
-        }
-      }
-      .team-members {
-        margin-top: 0px;
-        .teamMembers-lists {
-          display: flex;
-          align-items: center;
-        }
-      }
     }
+  }
+  .minview-profile-details {
+    width: 25%;
   }
   .selectAll-kraKpi {
     display: flex;
@@ -832,7 +848,11 @@ p {
     color: #fff;
     cursor: pointer;
   }
-  .kra-kpi-container {
+  .hide-selectAll-kraKpi {
+    display: none;
+  }
+  .kra-kpi-container,
+  .minview-kra-kpi-container {
     display: flex;
     gap: 10px;
     .kraKpi-card {
@@ -911,6 +931,15 @@ p {
       }
     }
   }
+  .minview-kra-kpi-container {
+    width: 75%;
+  }
+}
+.minview-employee-details {
+  width: 85% !important;
+  height: auto;
+  top: 50%;
+  transform: translate(0%, -50%);
 }
 
 .stats-modal {
@@ -1144,7 +1173,7 @@ p {
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 1;
+  z-index: 99;
   background: #000;
   color: #fff;
   padding: 20px;
@@ -1230,7 +1259,8 @@ p {
       cursor: pointer;
     }
   }
-  .profile-details {
+  .profile-details,
+  .minview-profile-details {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1357,6 +1387,9 @@ p {
         }
       }
     }
+  }
+  .minview-profile-details {
+    width: 25%;
   }
   .selectAll-kraKpi {
     display: flex;
