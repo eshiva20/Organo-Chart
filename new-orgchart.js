@@ -830,7 +830,6 @@
 //                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>`;
 //   modalKraKpiItems.appendChild(kraKpiItem);
 // });
-
 const departmentColors = {
   Finance: "#b1cbff80",
   Design: "#252b3480",
@@ -1003,6 +1002,7 @@ async function fetchChartData() {
     //     img: "https://cdn.balkan.app/shared/15.jpg",
     //   },
     // ];
+
     const hirarchyData = [];
     const updatedHirarchyData = assignDepartmentColors(hirarchyData);
     chart.load(updatedHirarchyData);
@@ -1022,7 +1022,13 @@ function showSidebarNode() {
 function hideSidebarNode() {
   krakpiSelectedContainer.style.display = "none";
   const sidebarNodeDetail = document.querySelector(".side-node-data");
-  sidebarNodeDetail.style.transform = "translate(110%, -50%)"; // Slide out to the right
+  sidebarNodeDetail.style.transform = "translate(110%, -50%)";
+
+  if (sidebarNodeDetail) {
+    sidebarNodeDetail.innerHTML = "";
+    // sidebarNodeDetail.style.transform = "translate(110%, -50%)";
+    sidebarNodeDetail.classList.remove("minview-sidebar-employee-details");
+  }
 }
 
 function findNodeData(nodeId) {
@@ -1034,6 +1040,158 @@ function findNodeData(nodeId) {
   }
   return null;
 }
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const sidebar = document.querySelector(".sidebar");
+//   const sidebarNodeDetail = document.querySelector(".side-node-data");
+
+//   sidebar.addEventListener("click", function (event) {
+//     const card = event.target.closest(".card");
+
+//     if (card) {
+//       showSidebarNode();
+//       const nodeId = card.getAttribute("data-id");
+
+//       if (nodeId) {
+//         const nodeData = findNodeData(nodeId);
+//         console.log("nodeData", nodeData);
+//         sidebarNodeDetail.innerHTML = `
+//           <div>
+//             <div class="modal-actions">
+//               <i class="fa-solid fa-up-down-left-right modal-actions-icon"></i>
+//               <i onclick="handleMinMax()" class="fa-solid fa-up-right-and-down-left-from-center modal-actions-icon"></i>
+//               <i class="fa-solid fa-circle-xmark modal-actions-icon cross-icon" onclick="hideSidebarNode()" ></i>
+//             </div>
+
+//           <div class="profile-details">
+//           <div class="profile-img">
+//             <img class="img" src=${nodeData.img} />
+//             <div class="img-texts">
+//               <div class="text">
+//                 <p>
+//                   <span>4.6</span>
+//                   <i class="fa-solid fa-star star-icon"></i>
+//                 </p>
+//                 <p>${nodeData.name}</p>
+//                 <p>
+//                   <label>${nodeData.position}</label>
+//                   <label>${nodeData.location}</label>
+//                 </p>
+//               </div>
+//               <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
+//             </div>
+//             <div class="stats-container">
+//               <button class="stats-btn">
+//                 <i class="fa-solid fa-chart-pie stats-icon"></i>
+//                 <span>Statistics</span>
+//               </button>
+//             </div>
+//           </div>
+//           <div class="profile-details">
+//             <h2>About</h2>
+//             <div class="about-details">
+//               <div>
+//                 <label>Company</label>
+//                 <p>HBL pvt. ltd</p>
+//               </div>
+//               <div>
+//                 <label>Department</label>
+//                 <p class="department">
+//                   <img src="./assets/department_icon.png" alt="Department_Icon" class="department-icon"/>
+//                   <label>${nodeData.department}</label>
+//                 </p>
+//               </div>
+//               <div>
+//                 <label>Reporting to</label>
+//                 <p>Jaydeep Das</p>
+//               </div>
+//               <div>
+//                 <label>Team size</label>
+//                 <p>18</p>
+//               </div>
+//               <div>
+//                 <label>Direct reporting</label>
+//                 <p>Gaurav Chawla</p>
+//               </div>
+//               <div>
+//                 <label>Contact Info.</label>
+//                 <p>+93 123456789</p>
+//               </div>
+//               <div>
+//                 <label>DOJ</label>
+//                 <p>1 Jan,2025</p>
+//               </div>
+//               <div>
+//                 <label>Skills & Certification</label>
+//                 <p>Master in Excel</p>
+//               </div>
+//           </div>
+//           <div>
+//             <p>Team Members</p>
+//             <div class="team-members">
+//               <img src="./assets/teams_icon.png" class="teams-icon" alt="Teams Icon"/>
+//               <div class="teamMembers-lists">
+//               ${nodeData?.teams.map((url, id) => {
+//                 return `<img key=${id} class="teamsMember-img" src=${url} />`;
+//               })}
+//               </div>
+//               <span>+10</span>
+//             </div>
+//           </div>
+//          </div>
+//         </div>
+//         <hr/>
+//         <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
+//           <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();"  />
+//           <span>Select all KRA & KPI</span>
+//         </button>
+//       <section class="kra-kpi-container">
+//         <div class="kraKpi-card kra-card">
+//             <h2>KRA</h2>
+//             <div class="kraKpi-actions">
+//               <button  onclick="selectAllKras()">
+//                 <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
+//                 <span>Select all</span>
+//               </button>
+//             </div>
+//             <div class="kra-items">
+//              ${[...Array(5)]
+//                .map((_, id) => {
+//                  return `<div key=${id} class="kra-item">
+//                  <input type="checkbox" class="kra-checkbox"  onchange="handleKraSelect(this)"/>
+//                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+//               </div>`;
+//                })
+//                .join("")}
+//             </div>
+//         </div>
+//         <div class="kraKpi-card kpi-card">
+//             <h2>KPI</h2>
+//             <div class="kraKpi-actions">
+//               <button onclick="selectAllKpis()">
+//                 <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()" />
+//                 <span>Select all</span>
+//               </button>
+//             </div>
+//             <div class="kpi-items">
+//              ${[...Array(5)]
+//                .map((_, id) => {
+//                  return `<div key=${id} class="kpi-item">
+//                 <input type="checkbox" class="kpi-checkbox"  onchange="handleKpiSelect(this)"/>
+//                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+//               </div>`;
+//                })
+//                .join("")}
+//             </div>
+
+//         </div>
+//       </section>
+
+//         `;
+//       }
+//     }
+//   });
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
@@ -1048,138 +1206,164 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (nodeId) {
         const nodeData = findNodeData(nodeId);
-        console.log("nodeData", nodeData);
+
         sidebarNodeDetail.innerHTML = `
           <div>
             <div class="modal-actions">
               <i class="fa-solid fa-up-down-left-right modal-actions-icon"></i>
-              <i class="fa-solid fa-up-right-and-down-left-from-center modal-actions-icon"></i>
-              <i class="fa-solid fa-circle-xmark modal-actions-icon cross-icon" onclick="hideSidebarNode()" ></i>
+              <i id="toggleIcon" onclick="handleMinMax()" 
+                 class="fa-solid fa-up-right-and-down-left-from-center modal-actions-icon">
+              </i>
+              <i class="fa-solid fa-circle-xmark modal-actions-icon cross-icon" 
+                 onclick="hideSidebarNode()">
+              </i>
             </div>
-         <div class="profile-details">
-          <div class="profile-img">
-            <img class="img" src=${nodeData.img} />
-            <div class="img-texts">
-              <div class="text">
-                <p>
-                  <span>4.6</span>
-                  <i class="fa-solid fa-star star-icon"></i>
-                </p>
-                <p>${nodeData.name}</p>
-                <p>
-                  <label>${nodeData.position}</label>
-                  <label>${nodeData.location}</label>
-                </p>
-              </div>
-              <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            </div>
-            <div class="stats-container">
-              <button class="stats-btn">
-                <i class="fa-solid fa-chart-pie stats-icon"></i>
-                <span>Statistics</span>
-              </button>
-            </div>
-          </div>
-          <div class="profile-details">
-            <h2>About</h2>
-            <div class="about-details">
-              <div>
-                <label>Company</label>
-                <p>HBL pvt. ltd</p>
-              </div>
-              <div>
-                <label>Department</label>
-                <p class="department">
-                  <img src="./assets/department_icon.png" alt="Department_Icon" class="department-icon"/>
-                  <label>${nodeData.department}</label>
-                </p>
-              </div>
-              <div>
-                <label>Reporting to</label>
-                <p>Jaydeep Das</p>
-              </div>
-              <div>
-                <label>Team size</label>
-                <p>18</p>
-              </div>
-              <div>
-                <label>Direct reporting</label>
-                <p>Gaurav Chawla</p>
-              </div>
-              <div>
-                <label>Contact Info.</label>
-                <p>+93 123456789</p>
-              </div>
-              <div>
-                <label>DOJ</label>
-                <p>1 Jan,2025</p>
-              </div>
-              <div>
-                <label>Skills & Certification</label>
-                <p>Master in Excel</p>
-              </div>
-          </div>
-          <div>
-            <p>Team Members</p>
-            <div class="team-members">
-              <img src="./assets/teams_icon.png" class="teams-icon" alt="Teams Icon"/>
-              <div class="teamMembers-lists">
-              ${nodeData?.teams.map((url, id) => {
-                return `<img key=${id} class="teamsMember-img" src=${url} />`;
-              })}
-              </div>
-              <span>+10</span>
-            </div>
-          </div>
-         </div>
-        </div>
-        <hr/>
-        <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
-          <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();"  />
-          <span>Select all KRA & KPI</span>
-        </button>
-      <section class="kra-kpi-container">
-        <div class="kraKpi-card kra-card">
-            <h2>KRA</h2>
-            <div class="kraKpi-actions">
-              <button  onclick="selectAllKras()">
-                <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
-                <span>Select all</span>
-              </button>
-            </div>
-            <div class="kra-items">
-             ${[...Array(5)]
-               .map((_, id) => {
-                 return `<div key=${id} class="kra-item">
-                 <input type="checkbox" class="kra-checkbox"  onchange="handleKraSelect(this)"/>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>`;
-               })
-               .join("")}
-            </div>
-        </div>
-        <div class="kraKpi-card kpi-card">
-            <h2>KPI</h2>
-            <div class="kraKpi-actions">       
-              <button onclick="selectAllKpis()">
-                <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()" />
-                <span>Select all</span>
-              </button>
-            </div>
-            <div class="kpi-items">
-             ${[...Array(5)]
-               .map((_, id) => {
-                 return `<div key=${id} class="kpi-item">
-                <input type="checkbox" class="kpi-checkbox"  onchange="handleKpiSelect(this)"/>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>`;
-               })
-               .join("")}
-            </div>
-           
-        </div>
-      </section>
+            <div class="${detailsContainerClass}">
+              <div  class="${profileDetailsClass}">
+                <div class="${profileImgClass}">
+                  <img class="img" src="${nodeData.img}" />
+                  <div class="img-texts">
+                    <div class="text">
+                      <p>
+                        <span>4.6</span>
+                        <i class="fa-solid fa-star star-icon"></i>
+                      </p>
+                      <p>${nodeData.name}</p>
+                      <p>
+                        <label>${nodeData.position}</label>
+                        <label>${nodeData.location}</label>
+                      </p>
+                    </div>
+                    <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                  </div>
+                  <div class="stats-container">
+                    <button class="stats-btn">
+                      <i class="fa-solid fa-chart-pie stats-icon"></i>
+                      <span>Statistics</span>
+                    </button>
+                  </div>
+                </div>
 
+                <div class="${aboutProfileDetailsClass}">
+                  <h2>About</h2>
+                  <div class="about-details">
+                    <div>
+                      <label>Company</label>
+                      <p>HBL pvt. ltd</p>
+                    </div>
+                    <div>
+                      <label>Department</label>
+                      <p class="department">
+                        <img src="./assets/department_icon.png" 
+                            alt="Department_Icon" 
+                            class="department-icon"/>
+                        <label>${nodeData.department}</label>
+                      </p>
+                    </div>
+                    <div>
+                      <label>Reporting to</label>
+                      <p>Jaydeep Das</p>
+                    </div>
+                    <div>
+                      <label>Team size</label>
+                      <p>18</p>
+                    </div>
+                    <div>
+                      <label>Direct reporting</label>
+                      <p>Gaurav Chawla</p>
+                    </div>
+                    <div>
+                      <label>Contact Info.</label>
+                      <p>+93 123456789</p>
+                    </div>
+                    <div>
+                      <label>DOJ</label>
+                      <p>1 Jan, 2025</p>
+                    </div>
+                    <div>
+                      <label>Skills & Certification</label>
+                      <p>Master in Excel</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p>Team Members</p>
+                    <div class="team-members">
+                      <img src="./assets/teams_icon.png" 
+                          class="teams-icon" 
+                          alt="Teams Icon"/>
+                      <div class="teamMembers-lists">
+                        ${nodeData?.teams
+                          .map(
+                            (url, id) =>
+                              `<img key=${id} class="teamsMember-img" src=${url} />`
+                          )
+                          .join("")}
+                      </div>
+                      <span>+10</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+
+              <button class="${selectAllKraKpiClass}" onclick="selectAllKraKpi()">
+                <input type="checkbox" id="selectAll-kraKpi" 
+                      onchange="toggleSelectAllKraKpi(this)" 
+                      onclick="event.stopPropagation();"/>
+                <span>Select all KRA & KPI</span>
+              </button>
+
+              <section class="${kraKpiContainerClass}">
+                <div class="kraKpi-card kra-card">
+                  <h2>KRA</h2>
+                  <div class="kraKpi-actions">
+                    <button onclick="selectAllKras()">
+                      <input type="checkbox" id="selectAll-Kras" 
+                            onchange="selectAllKras()"/>
+                      <span>Select all</span>
+                    </button>
+                  </div>
+                  <div class="kra-items">
+                    ${[...Array(5)]
+                      .map(
+                        (_, id) => `
+                          <div key=${id} class="kra-item">
+                            <input type="checkbox" class="kra-checkbox" 
+                                  onchange="handleKraSelect(this)"/>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                          </div>`
+                      )
+                      .join("")}
+                  </div>
+                </div>
+
+                <div class="kraKpi-card kpi-card">
+                  <h2>KPI</h2>
+                  <div class="kraKpi-actions">       
+                    <button onclick="selectAllKpis()">
+                      <input type="checkbox" id="selectAll-Kpis" 
+                            onchange="selectAllKpis()"/>
+                      <span>Select all</span>
+                    </button>
+                  </div>
+                  <div class="kpi-items">
+                    ${[...Array(5)]
+                      .map(
+                        (_, id) => `
+                          <div key=${id} class="kpi-item">
+                            <input type="checkbox" class="kpi-checkbox" 
+                                  onchange="handleKpiSelect(this)"/>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                          </div>`
+                      )
+                      .join("")}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         `;
       }
     }
@@ -1566,6 +1750,90 @@ function checkSelected() {
   }
 }
 
+var minView = false;
+let aboutProfileDetailsClass = minView
+  ? "hide-about-profile-details"
+  : "about-profile-details";
+let selectAllKraKpiClass = minView
+  ? "hide-selectAll-kraKpi"
+  : "selectAll-kraKpi";
+let detailsContainerClass = minView ? "open-min-view" : "details-container";
+let employeeDetailsClass = minView
+  ? "minview-employee-details"
+  : "employee-details";
+let profileImgClass = minView ? "minview-profile-img" : "profile-img";
+let kraKpiContainerClass = minView
+  ? "minview-kra-kpi-container"
+  : "kra-kpi-container";
+let profileDetailsClass = minView
+  ? "minview-profile-details"
+  : "profile-details";
+
+function handleMinMax() {
+  minView = !minView;
+  let toggleIcon = document.getElementById("toggleIcon");
+  if (toggleIcon) {
+    toggleIcon.classList.toggle(
+      "fa-up-right-and-down-left-from-center",
+      !minView
+    );
+    toggleIcon.classList.toggle("fa-down-left-and-up-right-to-center", minView);
+  }
+
+  let profileDetails = document.querySelector(
+    ".about-profile-details, .hide-about-profile-details"
+  );
+  let selectAllKraKpi = document.querySelector(
+    ".selectAll-kraKpi, .hide-selectAll-kraKpi"
+  );
+  let detailsContainer = document.querySelector(
+    ".details-container, .open-min-view"
+  );
+  let employeeDetails = document.querySelector(
+    ".minview-employee-details, .employee-details"
+  );
+  let profileImg = document.querySelector(".minview-profile-img, .profile-img");
+  let kraKpiContainer = document.querySelector(
+    ".minview-kra-kpi-container , .kra-kpi-container"
+  );
+  let imgProfileDetails = document.querySelector(
+    ".minview-profile-details , .profile-details"
+  );
+  let sideNodeData = document.querySelector(".side-node-data");
+
+  if (profileDetails) {
+    profileDetails.classList.toggle("about-profile-details", !minView);
+    profileDetails.classList.toggle("hide-about-profile-details", minView);
+  }
+  if (selectAllKraKpi) {
+    selectAllKraKpi.classList.toggle("selectAll-kraKpi", !minView);
+    selectAllKraKpi.classList.toggle("hide-selectAll-kraKpi", minView);
+  }
+  if (detailsContainer) {
+    detailsContainer.classList.toggle("details-container", !minView);
+    detailsContainer.classList.toggle("open-min-view", minView);
+  }
+  if (employeeDetails) {
+    employeeDetails.classList.toggle("employee-details", !minView);
+    employeeDetails.classList.toggle("minview-employee-details", minView);
+  }
+  if (profileImg) {
+    profileImg.classList.toggle("profile-img", !minView);
+    profileImg.classList.toggle("minview-profile-img", minView);
+  }
+  if (kraKpiContainer) {
+    kraKpiContainer.classList.toggle("kra-kpi-container", !minView);
+    kraKpiContainer.classList.toggle("minview-kra-kpi-container", minView);
+  }
+  if (imgProfileDetails) {
+    imgProfileDetails.classList.toggle("profile-details", !minView);
+    imgProfileDetails.classList.toggle("minview-profile-details", minView);
+  }
+  if (sideNodeData) {
+    sideNodeData.classList.toggle("minview-sidebar-employee-details", minView);
+  }
+}
+
 editForm.prototype.show = function (nodeId) {
   this.hide();
   let node = this.chart.get(nodeId);
@@ -1575,139 +1843,140 @@ editForm.prototype.show = function (nodeId) {
         <div>
          <div class="modal-actions">
           <i class="fa-solid fa-up-down-left-right modal-actions-icon"></i>
-          <i class="fa-solid fa-up-right-and-down-left-from-center modal-actions-icon"></i>
+          <i id="toggleIcon" onclick="handleMinMax()" class="fa-solid fa-up-right-and-down-left-from-center modal-actions-icon"></i>
           <i class="fa-solid fa-circle-xmark modal-actions-icon cross-icon"></i>
          </div>
-         <div class="profile-details">
-          <div class="profile-img">
-            <img class="img" src="${node?.img}" />
-            <div class="img-texts">
-              <div class="text">
-                <p>
-                  <span>${node.rating}</span>
-                  <i class="fa-solid fa-star star-icon"></i>
-                </p>
-                <p>${node.name}</p>
-                <p>
-                  <label>${node.position}</label>
-                  <label>${node.location}</label>
-                </p>
+         <div class="${detailsContainerClass}">
+          <div class="${profileDetailsClass}">
+            <div class="${profileImgClass}">
+              <img class="img" src="${node?.img}" />
+              <div class="img-texts">
+                <div class="text">
+                  <p>
+                    <span>${node.rating}</span>
+                    <i class="fa-solid fa-star star-icon"></i>
+                  </p>
+                  <p>${node.name}</p>
+                  <p>
+                    <label>${node.position}</label>
+                    <label>${node.location}</label>
+                  </p>
+                </div>
+                <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
               </div>
-              <div><i class="fa-solid fa-ellipsis-vertical"></i></div>
+              <div class="stats-container">
+                <button class="stats-btn">
+                  <i class="fa-solid fa-chart-pie stats-icon"></i>
+                  <span>Statistics</span>
+                </button>
+              </div>
             </div>
-            <div class="stats-container">
-              <button class="stats-btn">
-                <i class="fa-solid fa-chart-pie stats-icon"></i>
-                <span>Statistics</span>
-              </button>
+            <div class="${aboutProfileDetailsClass}">
+              <h2>About</h2>
+              <div class="about-details">
+                <div>
+                  <label>Company</label>
+                  <p>HBL pvt. ltd</p>
+                </div>
+                <div>
+                  <label>Department</label>
+                  <p class="department">
+                    <img src="./assets/department_icon.png" alt="Department_Icon" class="department-icon"/>
+                    <label>${node.department}</label>
+                  </p>
+                </div>
+                <div>
+                  <label>Reporting to</label>
+                  <p>Jaydeep Das</p>
+                </div>
+                <div>
+                  <label>Team size</label>
+                  <p>18</p>
+                </div>
+                <div>
+                  <label>Direct reporting</label>
+                  <p>Gaurav Chawla</p>
+                </div>
+                <div>
+                  <label>Contact Info.</label>
+                  <p>+93 123456789</p>
+                </div>
+                <div>
+                  <label>DOJ</label>
+                  <p>1 Jan,2025</p>
+                </div>
+                <div>
+                  <label>Skills & Certification</label>
+                  <p>Master in Excel</p>
+                </div>
             </div>
-          </div>
-          <div class="profile-details">
-            <h2>About</h2>
-            <div class="about-details">
-              <div>
-                <label>Company</label>
-                <p>HBL pvt. ltd</p>
+            <div>
+              <p>Team Members</p>
+              <div class="team-members">
+                <img src="./assets/teams_icon.png" class="teams-icon" alt="Teams Icon"/>
+                <div class="teamMembers-lists">
+                ${[...Array(6)].map((_) => {
+                  return `<img class="teamsMember-img " src="https://cdn.balkan.app/shared/2.jpg"/>`;
+                })}
+                </div>
+                <span>+10</span>
               </div>
-              <div>
-                <label>Department</label>
-                <p class="department">
-                  <img src="./assets/department_icon.png" alt="Department_Icon" class="department-icon"/>
-                  <label>${node.department}</label>
-                </p>
-              </div>
-              <div>
-                <label>Reporting to</label>
-                <p>Jaydeep Das</p>
-              </div>
-              <div>
-                <label>Team size</label>
-                <p>18</p>
-              </div>
-              <div>
-                <label>Direct reporting</label>
-                <p>Gaurav Chawla</p>
-              </div>
-              <div>
-                <label>Contact Info.</label>
-                <p>+93 123456789</p>
-              </div>
-              <div>
-                <label>DOJ</label>
-                <p>1 Jan,2025</p>
-              </div>
-              <div>
-                <label>Skills & Certification</label>
-                <p>Master in Excel</p>
-              </div>
-          </div>
-          <div>
-            <p>Team Members</p>
-            <div class="team-members">
-              <img src="./assets/teams_icon.png" class="teams-icon" alt="Teams Icon"/>
-              <div class="teamMembers-lists">
-              ${[...Array(6)].map((_) => {
-                return `<img class="teamsMember-img " src="https://cdn.balkan.app/shared/2.jpg"/>`;
-              })}
-              </div>
-              <span>+10</span>
             </div>
           </div>
         </div>
-      </div>
-      <hr/>
-      <button class="selectAll-kraKpi" onclick="selectAllKraKpi()">
-        <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();" />
-        <span>Select all KRA & KPI</span>
-      </button>
-      <section class="kra-kpi-container">
-        <div class="kraKpi-card kra-card">
-            <h2>KRA</h2>
-            <div class="kraKpi-actions">
-              <button onclick="selectAllKras()">
-                <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
-                <span>Select all</span>
-              </button>
-            </div>
-            <div class="kra-items">
-             ${[...Array(5)]
-               .map((_, id) => {
-                 return `<div key=${id} class="kra-item">
-                 <input type="checkbox" class="kra-checkbox"  onchange="handleKraSelect(this)"/>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>`;
-               })
-               .join("")}
-            </div>
+        <hr/>
+        <button class="${selectAllKraKpiClass}" onclick="selectAllKraKpi()">
+          <input type="checkbox" id="selectAll-kraKpi" onchange="toggleSelectAllKraKpi(this)" onclick="event.stopPropagation();" />
+          <span>Select all KRA & KPI</span>
+        </button>
+        <section class="${kraKpiContainerClass}">
+          <div class="kraKpi-card kra-card">
+              <h2>KRA</h2>
+              <div class="kraKpi-actions">
+                <button onclick="selectAllKras()">
+                  <input type="checkbox" id="selectAll-Kras" onchange="selectAllKras()" />
+                  <span>Select all</span>
+                </button>
+              </div>
+              <div class="kra-items">
+              ${[...Array(5)]
+                .map((_, id) => {
+                  return `<div key=${id} class="kra-item">
+                  <input type="checkbox" class="kra-checkbox"  onchange="handleKraSelect(this)"/>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>`;
+                })
+                .join("")}
+              </div> 
+          </div>
+          <div class="kraKpi-card kpi-card">
+              <h2>KPI</h2>
+              <div class="kraKpi-actions">       
+                <button onclick="selectAllKpis()">
+                  <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()"/>
+                  <span>Select all</span>
+                </button>
+              </div>
+              <div class="kpi-items">
+              ${[...Array(5)]
+                .map((_, id) => {
+                  return `<div key=${id} class="kpi-item">
+                  <input type="checkbox" class="kpi-checkbox"  onchange="handleKpiSelect(this)"/>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>`;
+                })
+                .join("")}
+              </div>
             
-        </div>
-        <div class="kraKpi-card kpi-card">
-            <h2>KPI</h2>
-            <div class="kraKpi-actions">       
-              <button onclick="selectAllKpis()">
-                <input type="checkbox" id="selectAll-Kpis" onchange="selectAllKpis()"/>
-                <span>Select all</span>
-              </button>
-            </div>
-            <div class="kpi-items">
-             ${[...Array(5)]
-               .map((_, id) => {
-                 return `<div key=${id} class="kpi-item">
-                <input type="checkbox" class="kpi-checkbox"  onchange="handleKpiSelect(this)"/>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>`;
-               })
-               .join("")}
-            </div>
-           
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
     </div>`;
 
   let div = document.createElement("div");
   div.id = "edit-form";
   div.innerHTML = editHtml;
-  div.classList.add("employee-details");
+  div.classList.add(employeeDetailsClass);
   this.chart.element.appendChild(div);
 
   const crossIcon = div.querySelector(".modal-actions-icon.cross-icon");

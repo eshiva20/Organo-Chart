@@ -1247,7 +1247,8 @@ p {
     cursor: pointer;
   }
 }
-.sidebar-employee-details {
+.sidebar-employee-details,
+.minview-sidebar-employee-details {
   .modal-actions {
     display: flex;
     gap: 10px;
@@ -1259,15 +1260,18 @@ p {
       cursor: pointer;
     }
   }
+  .open-min-view {
+    display: flex;
+    gap: 15px;
+  }
   .profile-details,
   .minview-profile-details {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 
-    /* border: 1px solid gray; */
-
-    .profile-img {
+    .profile-img,
+    .minview-profile-img {
       width: 35%;
       .img {
         width: 100%;
@@ -1335,8 +1339,12 @@ p {
         }
       }
     }
+    .minview-profile-img {
+      width: 100%;
+    }
 
-    .profile-details {
+    .about-profile-details,
+    .hide-about-profile-details {
       width: 60%;
       display: block;
 
@@ -1387,6 +1395,9 @@ p {
         }
       }
     }
+    .hide-about-profile-details {
+      display: none;
+    }
   }
   .minview-profile-details {
     width: 25%;
@@ -1405,7 +1416,11 @@ p {
     color: #fff;
     cursor: pointer;
   }
-  .kra-kpi-container {
+  .hide-selectAll-kraKpi {
+    display: none;
+  }
+  .kra-kpi-container,
+  .minview-kra-kpi-container {
     display: flex;
     gap: 10px;
     .kraKpi-card {
@@ -1484,4 +1499,17 @@ p {
       }
     }
   }
+  .minview-kra-kpi-container {
+    width: 75%;
+  }
+}
+
+.minview-sidebar-employee-details {
+  /* height: auto;
+  opacity: 1; */
+  width: 85% !important;
+  height: auto;
+  top: 50%;
+  transform: translate(0%, -50%);
+  opacity: 1;
 }
